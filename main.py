@@ -36,3 +36,28 @@ class ChatbotAssistant:
     def __init__(self, intents_path, function_mappings = None):
         self.model = None
         self.intents_path = intents_path
+
+        self.documents = []
+        self.vocabulary = []
+        self.intents = []
+        self.intents_responses = {}
+
+        self.function_mappings = function_mappings
+
+        self.X = None
+        self.y = None
+
+    @staticmethod
+    def tokenize_and_lemmatize(text):
+        lemmatizer = nltk.WordNetLemmatizer()
+
+        words = nltk.word_tokenize(text)
+        words = [lemmatizer.lemmatize(word.lower()) for word in words]
+
+        return words
+
+    def bag_of_words(self, words):
+        return [1 if word in words else 0 for word in self.vocabulary]
+
+    def parse_intents(self):
+        lemmatizer = nltk.WordNetLemmatizer()
