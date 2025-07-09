@@ -92,3 +92,19 @@ class ChatbotAssistant:
 
         self.X = np.array(bags)
         self.y = np.array(indices)
+
+
+    def train_model(self, batch_size, lr, epochs):
+        X_tensor = torch.tensor(self.X, dtype=torch.float32)
+        y_tensor = torch.tensor(self.y, dtype=torch.long)
+
+        dataset = TensorDataset(X_tensor, y_tensor)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+
+        self.model = ChatbotModel(self.X.shape[1], len(self.intents)) 
+
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.Adam(self.model.parameters(), lr=lr)
+
+        for epoch in range(epochs):
+            running_loss = 0.0
