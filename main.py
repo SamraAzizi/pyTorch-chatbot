@@ -137,3 +137,19 @@ class ChatbotAssistant:
         bag = self.bag_of_words(words)
 
         bag_tensor = torch.tensor([bag], dtype=torch.float32)
+
+        self.model.eval()
+        with torch.no_grad():
+            predictions = self.model(bag_tensor)
+
+        predicted_class_index = torch.argmax(predictions, dim=1).item()
+        predicted_intent = self.intents[predicted_class_index]
+
+        if self.function_mappings:
+            if predicted_intent in self.function_mappings:
+                self.function_mappings[predicted_intent]()
+
+        if self.intents_responses[predicted_intent]:
+            return random.choice(self.intents_responses[predicted_intent])
+        else:
+            return None
