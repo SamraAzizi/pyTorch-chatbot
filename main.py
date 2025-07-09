@@ -76,3 +76,19 @@ class ChatbotAssistant:
                     self.documents.append((pattern_words, intent['tag']))
 
                 self.vocabulary = sorted(set(self.vocabulary))
+
+    def prepare_data(self):
+        bags = []
+        indices = []
+
+        for document in self.documents:
+            words = document[0]
+            bag = self.bag_of_words(words)
+
+            intent_index = self.intents.index(document[1])
+
+            bags.append(bag)
+            indices.append(intent_index)
+
+        self.X = np.array(bags)
+        self.y = np.array(indices)
