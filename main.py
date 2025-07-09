@@ -108,3 +108,16 @@ class ChatbotAssistant:
 
         for epoch in range(epochs):
             running_loss = 0.0
+
+            for batch_X, batch_y in loader:
+                optimizer.zero_grad()
+                outputs = self.model(batch_X)
+                loss = criterion(outputs, batch_y)
+                loss.backward()
+                optimizer.step()
+                running_loss += loss
+            
+            print(f"Epoch {epoch+1}: Loss: {running_loss / len(loader):.4f}")
+
+    def save_model(self, model_path, dimensions_path):
+        torch.save(self.model.state_dict(), model_path)
