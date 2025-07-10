@@ -10,6 +10,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
+
+
 class ChatbotModel(nn.Module):
 
     def __init__(self, input_size, output_size):
@@ -61,6 +63,7 @@ class ChatbotAssistant:
 
     def parse_intents(self):
         lemmatizer = nltk.WordNetLemmatizer()
+
         if os.path.exists(self.intents_path):
             with open(self.intents_path, 'r') as f:
                 intents_data = json.load(f)
@@ -92,7 +95,6 @@ class ChatbotAssistant:
 
         self.X = np.array(bags)
         self.y = np.array(indices)
-
 
     def train_model(self, batch_size, lr, epochs):
         X_tensor = torch.tensor(self.X, dtype=torch.float32)
@@ -153,12 +155,12 @@ class ChatbotAssistant:
             return random.choice(self.intents_responses[predicted_intent])
         else:
             return None
-        
 
-    def get_stocks():
-        stocks = ['APPL', 'META', 'NVDA', 'GS', 'MSFT']
 
-        print(random.sample(stocks, 3))
+def get_stocks():
+    stocks = ['APPL', 'META', 'NVDA', 'GS', 'MSFT']
+
+    print(random.sample(stocks, 3))
 
 
 if __name__ == '__main__':
@@ -169,3 +171,14 @@ if __name__ == '__main__':
 
     # assistant.save_model('chatbot_model.pth', 'dimensions.json')
 
+    assistant = ChatbotAssistant('intents.json', function_mappings = {'stocks': get_stocks})
+    assistant.parse_intents()
+    assistant.load_model('chatbot_model.pth', 'dimensions.json')
+
+    while True:
+        message = input('Enter your message:')
+
+        if message == '/quit':
+            break
+
+        print(assistant.process_message(message))
