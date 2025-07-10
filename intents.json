@@ -25,6 +25,31 @@
 			"tag": "stocks",
 			"patterns": ["What are my stocks?", "Which stocks do I own?", "Show my stock portfolio"],
 			"responses": ["Here are your stocks!"]
+		},
+        {
+			"tag": "thanks",
+			"patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot", "Appreciate it"],
+			"responses": ["You're welcome!", "Happy to help!", "Anytime!"]
+		},
+		{
+			"tag": "weather",
+			"patterns": ["What's the weather like?", "Tell me the weather", "Is it raining?", "How's the weather today?", "Will it rain today?"],
+			"responses": ["Let me check the weather for you.", "It looks sunny right now!", "Seems like it might rain today."]
+		},
+		{
+			"tag": "name",
+			"patterns": ["What is your name?", "Who are you?", "Can you tell me your name?", "What's your bot name?"],
+			"responses": ["I am your virtual assistant.", "You can call me ChatBot!", "My name is HelperBot."]
+		},
+		{
+			"tag": "age",
+			"patterns": ["How old are you?", "What's your age?", "When were you created?", "Are you old?"],
+			"responses": ["I'm as young as the latest update!", "I don't age like humans do.", "I'm always up-to-date!"]
+		},
+		{
+			"tag": "joke",
+			"patterns": ["Tell me a joke", "Make me laugh", "Do you know any jokes?", "Say something funny"],
+			"responses": ["Why don't scientists trust atoms? Because they make up everything!", "I would tell you a UDP joke, but you might not get it."]
 		}
 	]
 }
