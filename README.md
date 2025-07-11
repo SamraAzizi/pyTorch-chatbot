@@ -14,3 +14,10 @@ A PyTorch-based chatbot that classifies user intents and responds appropriately,
    ```bash
    git clone https://github.com/yourusername/chatbot-assistant.git
    cd chatbot-assistant
+   ```
+
+2. Install dependencies:
+```bash
+pip install torch nltk numpy
+```
+
