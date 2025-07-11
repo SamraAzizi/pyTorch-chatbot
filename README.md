@@ -46,3 +46,41 @@ chatbot-assistant/
 ├── main.py                # Main implementation
 └── README.md              
 ```
+## ⚙️ Configuration
+
+| Parameter      | Default | Description                  |
+|---------------|---------|------------------------------|
+| `batch_size`  | 8       | Training batch size          |
+| `lr`          | 0.001   | Learning rate                |
+| `epochs`      | 100     | Training epochs              |
+| `dropout_rate`| 0.5     | Dropout probability          |
+
+## 💡 Features
+
+- Intent classification with neural network  
+- Custom function mapping  
+- Lemmatization and tokenization  
+- Easy JSON configuration  
+
+## 📚 Documentation
+
+### `ChatbotAssistant` Class
+
+```python
+class ChatbotAssistant:
+    def __init__(self, intents_path, function_mappings=None):
+        """
+        Initialize chatbot with:
+        - intents_path: path to JSON intents file
+        - function_mappings: dict mapping intent tags to functions
+        """
+    
+    def process_message(self, input_message):
+        """
+        Process user input and return response:
+        1. Tokenizes and lemmatizes input
+        2. Converts to bag-of-words
+        3. Classifies intent
+        4. Executes mapped function (if exists)
+        5. Returns random response
+        """
